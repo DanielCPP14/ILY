@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #c9184a, #ff758f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #a5b4fc;
+}
+
+.section-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    position: relative;
+}
+
+.section {
+    width: 240px;
+    height: 300px;
+    margin: 0 auto;
+    background: #fff1e6;
+    padding: 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    cursor: pointer;
+    opacity: 0;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.section .card-front,
+.section .card-back {
+    position: absolute;
+    inset: 0;
+    padding: 1.5rem;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff1e6;
+    border-radius: 8px;
+    border: 1px dashed #d4a373;
+}
+
+.section .card-front {
+    background-image: 
+        linear-gradient(rgba(255, 241, 230, 0.9), rgba(255, 241, 230, 0.9)),
+        url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4a373' fill-opacity='0.2'%3E%3Cpath d='M0 0h20v20H0z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.section .card-back {
+    transform: rotateY(180deg);
+    background: #fefae0;
+}
+
+.section.flipped .card-front {
+    transform: rotateY(180deg);
+}
+
+.section.flipped .card-back {
+    transform: rotateY(0deg);
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.section i {
+    font-size: 2rem;
+    color: #d4a373;
+    margin-bottom: 1rem;
+}
+
+.section h2 {
+    font-size: 1.2rem;
+    color: #774936;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+.section .recipe-title {
+    font-size: 0.7rem;
+    color: #937160;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+}
+
+.section .recipe-ingredients {
+    font-size: 0.8rem;
+    color: #937160;
+    margin-bottom: 0.8rem;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.section p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #774936;
+    text-align: center;
+    margin-top: 0.8rem;
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #d4a373;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.recipe-stamp {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #d4a373;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #d4a373;
+    transform: rotate(-15deg);
+    opacity: 0.7;
+}
+
+.inspirational {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem;
+    font-size: 1.5rem;
+    color: #a5b4fc;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.2s;
+}
+
+.hearts-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: fixed;
+    font-size: 20px;
+    color: #ff6b6b;
+    opacity: 0;
+    animation: float 6s linear infinite;
+}
+
+.audio-player {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+}
+
+.audio-control {
+    background: #ff6b6b;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.audio-control:hover {
+    transform: scale(1.1);
+    background: #ff8787;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(-50%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50%);
+        opacity: 0;
+    }
+}
+
+.background-effects {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, 
+                              rgba(255, 107, 107, 0.1) 0%, 
+                              transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .section-container {
+        grid-template-columns: 1fr;
+    }
+}
